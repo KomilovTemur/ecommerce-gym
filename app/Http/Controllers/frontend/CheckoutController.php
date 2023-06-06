@@ -62,10 +62,7 @@ class CheckoutController extends Controller
             $prod->update();
         }
 
-        // $cartitem = Cart::where('user_id', Auth::id());
-        // Cart::destroy($cartitem);
-
-
+        Cart::where("user_id", Auth::id())->delete();
         return redirect('/')->with('status', "Order Placed successfully");
     }
 
