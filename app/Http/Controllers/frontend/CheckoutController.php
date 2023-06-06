@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -43,7 +44,7 @@ class CheckoutController extends Controller
 
         $order->total_price = $total;
 
-        $order->tracking_no = 'ecomerce' . rand(1111, 9999);
+        $order->tracking_no = $request->name . rand(1111, 9999);
         $order->save();
         $order->id;
         $cartitem = Cart::where('user_id', Auth::id())->get();
@@ -61,22 +62,19 @@ class CheckoutController extends Controller
             $prod->update();
         }
 
-        // if (Auth::user()->address1 == NULL) {
-        //     $user = User::where('id', Auth::id())->first();
-        //     $user->name = $request->input('lname');
-        //     $user->phoneno = $request->input('phoneno');
-        //     $user->address1 = $request->input('address1');
-        //     $user->address2 = $request->input('address2');
-        //     $user->city = $request->input('city');
-        //     $user->state = $request->input('state');
-        //     $user->country = $request->input('country');
-        //     $user->pincode = $request->input('pincode');
-        //     $user->update();
-        // }
-        $cartitems = Cart::where('user_id', Auth::id());
-        Cart::destroy($cartitem);
+        // $cartitem = Cart::where('user_id', Auth::id());
+        // Cart::destroy($cartitem);
 
 
         return redirect('/')->with('status', "Order Placed successfully");
+    }
+
+
+    public function deleteOrder($id)
+    {
+
+        DB::table('carts')->where("id", $id)->delete();
+        DB::table('order')->where("id", $id)->delete();
+        return redirect('/cart');
     }
 }
