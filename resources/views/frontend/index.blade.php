@@ -62,8 +62,8 @@
                 <img src="{{ asset('upload/product/' . $item->image) }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h6 class="card-title">{{ $item->name }}</h6>
-                  <span href="#" class=" pe-auto float-start">RS <s>{{ $item->original_price }}</s></span>
-                  <span href="#" class=" pe-auto float-end">RS {{ $item->selling_price }}</span>
+                  <span href="#" class=" pe-auto float-start">$ <s>{{ $item->original_price }}</s></span>
+                  <span href="#" class=" pe-auto float-end">$ {{ $item->selling_price }}</span>
                 </div>
               </div>
             </a>

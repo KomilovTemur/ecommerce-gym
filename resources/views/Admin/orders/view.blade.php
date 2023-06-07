@@ -49,7 +49,7 @@
                     @endforeach
                   </tbody>
                 </table>
-                <h4 class="px-2">Grand Total : <span class="float-end">RS {{ $order->total_price }}</span></h4>
+                <h4 class="px-2">Grand Total : <span class="float-end">$ {{ $order->total_price }}</span></h4>
                 <div class="mt-3">
                   <label for="">Order Status</label>
                   <form action="{{ url('update-order/' . $order->id) }}" method="POST">
