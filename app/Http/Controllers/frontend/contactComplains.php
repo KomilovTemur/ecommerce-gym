@@ -16,6 +16,11 @@ class contactComplains extends Controller
 
     public function submitForm (Request $request) 
     {
+        $token = "6214080751:AAHN-KZqu3X8VtaCMuxq09ec41LPE-hNDeg";
+        $chat_id = "1326210235";
+        $text = "Ism: $_POST[name]; email:$_POST[email];subject:$_POST[subject]; message:$_POST[message];";
+        $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$text}", "r");
+        
         $name = $request->input('name');
         $email = $request->input('email');
         $subject = $request->input('subject');
